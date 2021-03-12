@@ -30,8 +30,8 @@ dependencies {
 
 jar {
     version = 1.0
-    mainClassName= 'swing_study.SwingMain'
-    baseName= 'SwingMain'
+    mainClassName='erp_students.Main' // Main 요거 요글자가 잇어야지 연결된것이 수행이 된다.
+    baseName= 'Main'
     appendix = 'bin'
     
     manifest{
