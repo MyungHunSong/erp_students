@@ -10,11 +10,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
-import erp_students.ui.content.list.NotSelectedException;
 import erp_students.ui.content.list.TitleTablePanel;
+import erp_students.ui.exception.InvalidCheckException;
+import erp_students.ui.exception.NotSelectedException;
+import erp_students.ui.exception.SqlConstraintException;
 import erp_students.ui.service.TitleService;
-import erp_students_daoImpl.SqlConstraintException;
-import erp_students_dto.Title;
+import erp_students_dto.TitleDto;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -86,7 +87,7 @@ public class TitleManager extends JFrame implements ActionListener {
 			
 			JMenuItem empListByTitleItem = new JMenuItem("동일 직책 사원 보기");
 			empListByTitleItem.addActionListener(popupMenuListener);
-			popMenu.add(deleteItem);
+			popMenu.add(empListByTitleItem);
 			
 			return popMenu;
 		}
@@ -98,16 +99,17 @@ public class TitleManager extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
 			if(e.getActionCommand().equals("삭제")) {
-				Title delTitle = pList.getItem();
+				TitleDto delTitle = pList.getItem();
 				service.removeTitle(delTitle);
 				pList.loadData();
 				JOptionPane.showMessageDialog(null, delTitle + "삭제 되었습니다.");
 			}
 			if(e.getActionCommand().equals("수정")) {
-				Title updateTitle = pList.getItem();
+				TitleDto updateTitle = pList.getItem();
 				pContent.setTitle(updateTitle);
 				btnAdd.setText("수정");
 			}
+			
 			
 			}catch (NotSelectedException | SqlConstraintException e2) {
 				JOptionPane.showMessageDialog(null, e2.getMessage());
@@ -145,7 +147,7 @@ public class TitleManager extends JFrame implements ActionListener {
 	
 	private void actionPerformedBtnUpdate(ActionEvent e) {
 		
-		Title updateTitle = pContent.getTitle(); // pContent에서 수정된 title 가져오기
+		TitleDto updateTitle = pContent.getTitle(); // pContent에서 수정된 title 가져오기
 		service.modify(updateTitle); //sql에 들어가는것 (update 수행)
 		
 		pList.loadData();
@@ -155,7 +157,7 @@ public class TitleManager extends JFrame implements ActionListener {
 		
 	}
 	protected void actionPerformedBtnAdd(ActionEvent e) {
-		Title title = pContent.getTitle();
+		TitleDto title = pContent.getTitle();
 		
 		service.addTitle(title);
 	

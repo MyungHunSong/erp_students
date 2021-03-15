@@ -9,7 +9,7 @@ import java.util.List;
 
 import erp_students.erpdatabase.JdbcConn;
 import erp_students_dao.DepartmentDao;
-import erp_students_dto.Department;
+import erp_students_dto.DepartmentDto;
 
 
 public class DepartmentDaoImpl implements DepartmentDao {
@@ -36,13 +36,13 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 
 	@Override
-	public List<Department> selectByAll() {
+	public List<DepartmentDto> selectByAll() {
 		String sql = "select deptNo, deptName, floor from department";
 		 try(Connection con = JdbcConn.getconnection();){
 			PreparedStatement pstmt = con.prepareStatement(sql); // 이거 머하는놈임?
 			ResultSet rs = pstmt.executeQuery();{
 				if(rs.next()) {
-					List<Department> list = new ArrayList<>();
+					List<DepartmentDto> list = new ArrayList<>();
 					
 					do { 
 						list.add(getDepartment(rs)); // getDepartment 에서 작업한 내용을 여기에다가 추가
@@ -59,11 +59,11 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		return null;
 	}
 
-	private Department getDepartment(ResultSet rs) throws SQLException {
+	private DepartmentDto getDepartment(ResultSet rs) throws SQLException {
 		int deptNo = rs.getInt("deptNo");
 		String deptName = rs.getString("deptName");
 		int floor = rs.getInt("floor");
-		return new Department(deptNo, deptName,floor);
+		return new DepartmentDto(deptNo, deptName,floor);
 	}
 	
 	
@@ -74,7 +74,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 
 	@Override
-	public Department selectDepartmentByNo(Department department) {
+	public DepartmentDto selectDepartmentByNo(DepartmentDto department) {
 		String sql = "select  deptNo, deptName, floor from department where deptNo = ?";
 		try(Connection con = JdbcConn.getconnection();
 			PreparedStatement ptsmt = con.prepareStatement(sql)){
@@ -98,7 +98,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	
 
 	@Override
-	public int insertDepartment(Department department) {
+	public int insertDepartment(DepartmentDto department) {
 		String sql = "insert into department values (?, ?, ?)";
 		try(Connection con = JdbcConn.getconnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);){
@@ -124,7 +124,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	
 	
 	@Override
-	public int updateDepartment(Department department) {
+	public int updateDepartment(DepartmentDto department) {
 		
 		String sql = "update department set deptNo = ? where deptName = ?";
 		try(Connection con = JdbcConn.getconnection();

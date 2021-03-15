@@ -1,19 +1,28 @@
 package erp_students_dto;
 
-public class Employee {
+public class EmployeeDto {
 	private int empNo;
 	private String empName;
-	private Title title; // 외래키의 참조 땜에 밑에거도 이럼
-	private Employee manager;
+	private TitleDto title; // 외래키의 참조 땜에 밑에거도 이럼
+	private EmployeeDto manager;
 	private int salary;
-	private Department dept;
+	private DepartmentDto dept;
 
 
-	public Employee(int empNo) {
+	public EmployeeDto(int empNo) {
 		this.empNo = empNo;
 	}
+	
+	
 
-	public Employee(int empNo, String empName, Title title, Employee manager, int salary, Department dept) {
+	public EmployeeDto(int empNo, String empName) {
+		this.empNo = empNo;
+		this.empName = empName;
+	}
+
+
+
+	public EmployeeDto(int empNo, String empName, TitleDto title, EmployeeDto manager, int salary, DepartmentDto dept) {
 		this.empNo = empNo;
 		this.empName = empName;
 		this.title = title;
@@ -21,9 +30,9 @@ public class Employee {
 		this.salary = salary;
 		this.dept = dept;
 	}
-
 	
-
+	
+	
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -40,19 +49,19 @@ public class Employee {
 		this.empName = empName;
 	}
 
-	public Title getTitle() {
+	public TitleDto getTitle() {
 		return title;
 	}
 
-	public void setTitle(Title title) {
+	public void setTitle(TitleDto title) {
 		this.title = title;
 	}
 
-	public Employee getManager() {
+	public EmployeeDto getManager() {
 		return manager;
 	}
 
-	public void setManager(Employee manager) {
+	public void setManager(EmployeeDto manager) {
 		this.manager = manager;
 	}
 
@@ -64,18 +73,21 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Department getDept() {
+	public DepartmentDto getDept() {
 		return dept;
 	}
 
-	public void setDept(Department dept) {
+	public void setDept(DepartmentDto dept) {
 		this.dept = dept;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return String.format("Employee  %s %s %s %s %s %s %s", empNo,
-				empName, title.gettNo(),manager.getEmpName() ,manager.getEmpNo(), salary, dept); // 깔금
+		return String.format("Employee [empNo=%s, empName=%s, title=%s, manager=%s, salary=%s, dept=%s]", empNo,
+				empName, title, manager, salary, dept);
 	}
+
 
 }

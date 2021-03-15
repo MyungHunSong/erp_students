@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import erp_students.erpdatabase.JdbcConn;
+import erp_students.ui.exception.SqlConstraintException;
 import erp_students_dao.TitleDao;
-import erp_students_dto.Employee;
-import erp_students_dto.Title;
+import erp_students_dto.EmployeeDto;
+import erp_students_dto.TitleDto;
 
 
 public class TitleDaoImpl implements TitleDao {
@@ -31,13 +32,13 @@ public class TitleDaoImpl implements TitleDao {
 	
 
 	@Override
-	public List<Title> selectTitleByAll() {
+	public List<TitleDto> selectTitleByAll() {
 		String sql = "select tno,tname from title";
 		try(Connection con = JdbcConn.getconnection();){
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs  = pstmt.executeQuery();{
 					if(rs.next()) {
-						List<Title> list = new ArrayList<>();
+						List<TitleDto> list = new ArrayList<>();
 						do {
 							list.add(getTitle(rs));
 						}while(rs.next());
@@ -53,16 +54,16 @@ public class TitleDaoImpl implements TitleDao {
 		return null;
 	}
 
-	private Title getTitle(ResultSet rs) throws SQLException {
+	private TitleDto getTitle(ResultSet rs) throws SQLException {
 		int tNo = rs.getInt("tno");
 		String tName = rs.getNString("tname");
-		return new Title(tNo, tName);
+		return new TitleDto(tNo, tName);
 	}
 	
 	
 
 	@Override
-	public Title selectTitleByNo(Title title) {
+	public TitleDto selectTitleByNo(TitleDto title) {
 		String sql = "select tno, tname from title where tno = ?";
 		try(Connection con = JdbcConn.getconnection(); //연결 방식
 			PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -88,7 +89,7 @@ public class TitleDaoImpl implements TitleDao {
 	
 
 	@Override
-	public int insertTitle(Title title) {
+	public int insertTitle(TitleDto title) {
 		String sql = "insert into title values(?, ?)";
 		try(Connection con = JdbcConn.getconnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);){
@@ -103,7 +104,7 @@ public class TitleDaoImpl implements TitleDao {
 	}
 
 	@Override
-	public int updateTitle(Title title) {
+	public int updateTitle(TitleDto title) {
 		
 		String sql = "update title set tname = ? where tno = ?";
 		try(Connection con = JdbcConn.getconnection();

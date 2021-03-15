@@ -1,4 +1,4 @@
-package erp_students_daoImpl;
+package erp_students.ui.exception;
 
 public class SqlConstraintException extends RuntimeException {
 

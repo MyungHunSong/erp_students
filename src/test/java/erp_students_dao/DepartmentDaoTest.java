@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import erp_students_daoImpl.DepartmentDaoImpl;
-import erp_students_dto.Department;
+import erp_students_dto.DepartmentDto;
 
 
 
@@ -33,10 +33,10 @@ public class DepartmentDaoTest {
 	public void testSelectByAll04() { 
 		System.out.printf("%s() %n " , "testSelectByAll()" );
 		
-		List<Department> departmentList = dao.selectByAll();
+		List<DepartmentDto> departmentList = dao.selectByAll();
 		Assert.assertNotNull(departmentList);
 		
-		for(Department d : departmentList) {
+		for(DepartmentDto d : departmentList) {
 			System.out.println(d);
 		}
 		
@@ -46,15 +46,15 @@ public class DepartmentDaoTest {
 	public void testSelectDepartmentByNo05() {
 		System.out.printf("%s() %n " , "testSelectDepartmentByNo()");
 		
-		Department department = new Department(5);
-		Department searchDepartment = dao.selectDepartmentByNo(department);
+		DepartmentDto department = new DepartmentDto(5);
+		DepartmentDto searchDepartment = dao.selectDepartmentByNo(department);
 		Assert.assertNull(searchDepartment);
 	}
 	
 	@Test
 	public void testInsertDepartment01() {
 		System.out.printf("%s() %n " , " testInsertDepartment()");
-		Department newDepartment = new Department(6, "학살", 3);
+		DepartmentDto newDepartment = new DepartmentDto(6, "학살", 3);
 		int res = dao.insertDepartment(newDepartment);
 		Assert.assertEquals(1, res);
 		
@@ -64,7 +64,7 @@ public class DepartmentDaoTest {
 	@Test
 	public void testUpdateDepartment02() {
 		System.out.printf("%s() %n " , "testUpdateDepartment()");
-		Department newDepartment = new Department(6, "학살", 5);
+		DepartmentDto newDepartment = new DepartmentDto(6, "학살", 5);
 		int res = dao.updateDepartment(newDepartment);
 		Assert.assertEquals(1, res);
 		

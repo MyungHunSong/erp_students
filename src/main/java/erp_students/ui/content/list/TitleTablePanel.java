@@ -3,10 +3,10 @@ package erp_students.ui.content.list;
 import javax.swing.SwingConstants;
 
 import erp_students.ui.service.TitleService;
-import erp_students_dto.Title;
+import erp_students_dto.TitleDto;
 
 @SuppressWarnings("serial")
-public class TitleTablePanel extends AbstractCustomTablePanel<Title> {
+public class TitleTablePanel extends AbstractCustomTablePanel<TitleDto> {
 	public TitleTablePanel() {
 	}
 	private TitleService service; // 여기서 똑같은 객체가 2마리 잇을필요 없음
@@ -30,7 +30,7 @@ public class TitleTablePanel extends AbstractCustomTablePanel<Title> {
 	}
 
 	@Override
-	protected Object[] toArray(Title t) {
+	protected Object[] toArray(TitleDto t) {
 		
 		return new Object[] {t.gettNo(),t.gettName()};
 	}

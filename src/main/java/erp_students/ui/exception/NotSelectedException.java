@@ -1,4 +1,4 @@
-package erp_students.ui.content.list;
+package erp_students.ui.exception;
 
 @SuppressWarnings("serial")
 public class NotSelectedException extends RuntimeException {

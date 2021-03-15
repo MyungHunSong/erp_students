@@ -7,8 +7,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import erp_students_dto.Title;
+import erp_students.ui.exception.InvalidCheckException;
+import erp_students_dto.TitleDto;
 
+@SuppressWarnings("serial")
 public class TitlePanel extends JPanel {
 	private JTextField tfTno;
 	private JTextField tfTname;
@@ -22,7 +24,7 @@ public class TitlePanel extends JPanel {
 	
 	
 	//set으로 세팅
-	public void setTitle(Title title) {
+	public void setTitle(TitleDto title) {
 		tfTno.setText(title.gettNo() + "");
 		tfTname.setText(title.gettName());
 	}
@@ -30,13 +32,13 @@ public class TitlePanel extends JPanel {
 	
 	
 	// get으로 받아오는것
-	public Title getTitle() { // 여기서 중요한것 입력 않햇는데도 타이틀 개체가 생성될수 있다. 그러니 밸리드 체크해줘야함
+	public TitleDto getTitle() { // 여기서 중요한것 입력 않햇는데도 타이틀 개체가 생성될수 있다. 그러니 밸리드 체크해줘야함
 		validCheck();
 		
 		int tno = Integer.parseInt(tfTno.getText().trim());
 		String tName = tfTname.getText().trim();
 		
-		return new Title(tno, tName);
+		return new TitleDto(tno, tName);
 	}
 	
 	
@@ -83,6 +85,12 @@ public class TitlePanel extends JPanel {
 		tfTname = new JTextField();
 		tfTname.setColumns(10);
 		add(tfTname);
+
+//		EmployeeService service = new EmployeeService();
+//		EmployeePanel pEmpItem = new EmployeePanel();
+//		pEmpItem.setService(service);
+//		
+//		contentPane.add(pEmpItem);
 	}
 	
 	

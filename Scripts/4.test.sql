@@ -15,7 +15,7 @@ select e.empno,
 		join department d on e.dept  = d.deptNo;
 		
 -- 3/12 해당 직책을 가지고 있는 사원목록 검색
-select * from Title;
+select * from employee;
 
 -- 검색하는 주가 employee 이니 거기애 잇어야한다.
 select empname, empno
@@ -23,3 +23,12 @@ select empname, empno
 	join 
 	title t on e.title = t.tno
 	where tno = 5;
+	
+select *
+	from employee
+	where empno = 1003;
+	
+select empno, empname 
+	from employee e join department d on e.dept = d.deptNo
+	where deptno = 2;
+	

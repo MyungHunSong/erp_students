@@ -3,10 +3,10 @@ package erp_students.ui.content.list;
 import javax.swing.SwingConstants;
 
 import erp_students.ui.service.DepartmentService;
-import erp_students_dto.Department;
+import erp_students_dto.DepartmentDto;
 
 @SuppressWarnings("serial")
-public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
+public class DepartmentTablePanel extends AbstractCustomTablePanel<DepartmentDto> {
 	private DepartmentService service = new DepartmentService();
 	
 	@Override
@@ -33,7 +33,7 @@ public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
 	}
 
 	@Override
-	protected Object[] toArray(Department t) {
+	protected Object[] toArray(DepartmentDto t) {
 		
 		return new Object[] {t.getDeptNo(), t.getDeptName(), t.getFloor()};
 	}

@@ -15,7 +15,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import erp_students_dto.Title;
+import erp_students.ui.exception.NotSelectedException;
+import erp_students_dto.TitleDto;
 
 
 
@@ -50,6 +51,7 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 	public void loadData() {
 		initList();
 		setList(); // 갖다 넣자 마자 여기에서 받아서 다들어옴
+		
 	}
 	
 	

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import erp_students.ui.content.Employee_TestFrame;
 import erp_students.ui.content.TitleManager;
 
 import java.awt.GridLayout;
@@ -18,6 +19,7 @@ public class Main extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnTitle;
+	private JButton btnEmployee;
 
 	
 	public static void main(String[] args) {
@@ -52,11 +54,15 @@ public class Main extends JFrame implements ActionListener {
 		JButton btnDepartment = new JButton("부서관리");
 		contentPane.add(btnDepartment);
 		
-		JButton btnEmployee = new JButton("사원관리");
+		btnEmployee = new JButton("사원관리");
+		btnEmployee.addActionListener(this);
 		contentPane.add(btnEmployee);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnEmployee) {
+			actionPerformedBtnEmployee(e);
+		}
 		if (e.getSource() == btnTitle) {
 			actionPerformedBtnTitle(e);
 		}
@@ -65,6 +71,10 @@ public class Main extends JFrame implements ActionListener {
 	
 	protected void actionPerformedBtnTitle(ActionEvent e) {
 		TitleManager frame = new TitleManager();
+		frame.setVisible(true);
+	}
+	protected void actionPerformedBtnEmployee(ActionEvent e) {
+		Employee_TestFrame frame = new Employee_TestFrame();
 		frame.setVisible(true);
 	}
 }

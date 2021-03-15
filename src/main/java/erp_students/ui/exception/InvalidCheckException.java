@@ -1,4 +1,4 @@
-package erp_students.ui.content;
+package erp_students.ui.exception;
 
 @SuppressWarnings("serial")
 public class InvalidCheckException extends RuntimeException { // 전파가 계속 위로 올라감

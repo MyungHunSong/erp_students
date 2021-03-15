@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import erp_students.ui.content.list.DepartmentTablePanel;
 import erp_students.ui.content.list.TitleTablePanel;
 
-public class testframe extends JFrame {
+public class TestFrame extends JFrame {
 
 	private JPanel contentPane;
 
@@ -20,7 +20,7 @@ public class testframe extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					testframe frame = new testframe();
+					TestFrame frame = new TestFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class testframe extends JFrame {
 	}
 
 
-	public testframe() {
+	public TestFrame() {
 		initialize();
 	}
 	
