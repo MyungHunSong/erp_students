@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import erp_students.ui.content.list.DepartmentTablePanel;
-import erp_students.ui.content.list.TitleTablePanel;
+import erp_students.ui.list.DepartmentTablePanel;
+import erp_students.ui.list.TitleTablePanel;
 
 public class TestFrame extends JFrame {
 

@@ -8,9 +8,9 @@ import erp_students_dao.TitleDao;
 import erp_students_daoImpl.DepartmentDaoImpl;
 import erp_students_daoImpl.EmployeeDaoImpl;
 import erp_students_daoImpl.TitleDaoImpl;
-import erp_students_dto.DepartmentDto;
-import erp_students_dto.EmployeeDto;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Department;
+import erp_students_dto.Employee;
+import erp_students_dto.Title;
 
 public class EmployeeService {
 	private DepartmentDao deptDao = DepartmentDaoImpl.getInstance();
@@ -18,30 +18,30 @@ public class EmployeeService {
 	private EmployeeDao employeeDao = EmployeeDaoImpl.getInstance();
 	
 	
-	public List<EmployeeDto> showEmployeeList(){
+	public List<Employee> showEmployeeList(){
 		return employeeDao.selectEmployeeByAll();
 	}
 	
-	public List<DepartmentDto> showDeptList(){
+	public List<Department> showDeptList(){
 		return deptDao.selectByAll();
 	}
 	
 	
-	public List<TitleDto> showTitleList(){
+	public List<Title> showTitleList(){
 		return titleDao.selectTitleByAll();
 	}
 	
-	public  List<EmployeeDto> showEmployeeByDept(DepartmentDto dept){
+	public  List<Employee> showEmployeeByDept(Department dept){
 		return employeeDao.selectEmployeeByDept(dept);
 	}
 	
 	// 추가 삭제
-	public void addEmployee(EmployeeDto employee) {
+	public void addEmployee(Employee employee) {
 		employeeDao.insertEmployee(employee);
 		
 	}
 	
-	public void removeEmployee(EmployeeDto employee) {
+	public void removeEmployee(Employee employee) {
 		employeeDao.deleteEmployee(employee.getEmpNo());
 	}
 	

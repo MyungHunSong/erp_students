@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import erp_students_daoImpl.EmployeeDaoImpl;
-import erp_students_dto.DepartmentDto;
-import erp_students_dto.EmployeeDto;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Department;
+import erp_students_dto.Employee;
+import erp_students_dto.Title;
 
 
 
@@ -34,10 +34,10 @@ public class EmployeeDaoTest {
 	public void test05SelectEmployeeByAll() {
 		System.out.printf("%s()%n", "testSelectEmployeeByAll()");
 		
-		List<EmployeeDto> employeeList = dao.selectEmployeeByAll();
+		List<Employee> employeeList = dao.selectEmployeeByAll();
 		Assert.assertNotNull(employeeList);
 		
-		for(EmployeeDto e : employeeList) {
+		for(Employee e : employeeList) {
 			System.out.println(e);
 		}
 		
@@ -50,8 +50,8 @@ public class EmployeeDaoTest {
 	public void test04SelectEmployeeByNo() {
 		System.out.printf("%s()%n", "testSelectEmployeeByNo()");
 		
-		EmployeeDto selEmp = new EmployeeDto(2106);
-		EmployeeDto searchEmployee = dao.selectEmployeeByNo(selEmp);
+		Employee selEmp = new Employee(2106);
+		Employee searchEmployee = dao.selectEmployeeByNo(selEmp);
 		
 		Assert.assertNotNull(searchEmployee);
 		System.out.println(searchEmployee);
@@ -68,7 +68,7 @@ public class EmployeeDaoTest {
 	@Test
 	public void test01InsertEmployee() {
 		System.out.printf("%s()%n", "testInsertEmployee()");
-		EmployeeDto newEmp = new EmployeeDto(1004, "천사",  new TitleDto(5) ,new EmployeeDto(4377), 2000000, new DepartmentDto(1));
+		Employee newEmp = new Employee(1004, "천사",  new Title(5) ,new Employee(4377), 2000000, new Department(1));
 		int res = dao.insertEmployee(newEmp);
 		
 		Assert.assertEquals(1, res);
@@ -92,7 +92,7 @@ public class EmployeeDaoTest {
 	@Test
 	public void test02UpdateEmployee() {
 		System.out.printf("%s()%n", "testUpdateEmployee()");
-		EmployeeDto newEmployee = new EmployeeDto(1004, "니하오",  new TitleDto(4) ,new EmployeeDto(1003), 3000000, new DepartmentDto(2));
+		Employee newEmployee = new Employee(1004, "니하오",  new Title(4) ,new Employee(1003), 3000000, new Department(2));
 		int res = dao.updateEmployee(newEmployee);
 		// Assert.assertEquals(1, res); 
 		

@@ -1,4 +1,4 @@
-package erp_students.ui.content;
+package erp_students.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,16 +8,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import erp_students.ui.content.EmployeePanel;
+import erp_students.ui.list.EmployeeTablePanel;
 import erp_students.ui.service.EmployeeService;
-import erp_students_dto.DepartmentDto;
-import erp_students_dto.EmployeeDto;
-import erp_students_dto.TitleDto;
+import erp_students.ui.service.TitleService;
+import erp_students_dto.Department;
+import erp_students_dto.Employee;
+import erp_students_dto.Title;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import erp_students.ui.content.list.EmployeeTablePanel;
 
 public class Employee_TestFrame extends JFrame implements ActionListener {
 
@@ -27,8 +29,15 @@ public class Employee_TestFrame extends JFrame implements ActionListener {
 	private JButton butAdd;
 	private EmployeeTablePanel pList;
 	private EmployeeService service;
-
-
+	private JButton butCansle;
+	
+	
+	public Employee_TestFrame() { // service 친구를 위에다가 무조건 뺴줘야한다.
+		
+		initialize();
+	
+		
+	}
 
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +65,8 @@ public class Employee_TestFrame extends JFrame implements ActionListener {
 
 		panel.add(btnSet);
 
-		JButton butCansle = new JButton("취소");
+		butCansle = new JButton("취소");
+		butCansle.addActionListener(this);
 		panel.add(butCansle);
 		
 		pList = new EmployeeTablePanel();
@@ -66,6 +76,9 @@ public class Employee_TestFrame extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == butCansle) {
+			actionPerformedButCansle(e);
+		}
 		if (e.getSource() == butAdd) {
 			actionPerformedButton(e);
 		}
@@ -76,18 +89,20 @@ public class Employee_TestFrame extends JFrame implements ActionListener {
 
 	protected void actionPerformedBtnSet(ActionEvent e) {
 
-		EmployeeDto emp = new EmployeeDto(1003, "조민희", new TitleDto(3), new EmployeeDto(4377), 3000000, new DepartmentDto(2));
+		Employee item = new Employee(1003, "조민희", new Title(3), new Employee(4377), 3000000, new Department(2));
 		
-		pItem.setEmployee(emp);
+		pItem.setItem(item);
 		
 	}
 	protected void actionPerformedButton(ActionEvent e) {
 		
-		EmployeeDto employee = pItem.getEmployee();
+		Employee employee = pItem.getItem();
 		
 		service.addEmployee(employee);
 		
 		pList.loadData();
 		JOptionPane.showMessageDialog(null, employee + " 추가됬음.");
+	}
+	protected void actionPerformedButCansle(ActionEvent e) {
 	}
 }

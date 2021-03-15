@@ -9,9 +9,9 @@ import java.util.List;
 
 import erp_students.erpdatabase.JdbcConn;
 import erp_students_dao.EmployeeDao;
-import erp_students_dto.DepartmentDto;
-import erp_students_dto.EmployeeDto;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Department;
+import erp_students_dto.Employee;
+import erp_students_dto.Title;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
@@ -29,7 +29,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public List<EmployeeDto> selectEmployeeByAll() {
+	public List<Employee> selectEmployeeByAll() {
 		String sql = "select empno,empname,title_no,title_name,manager_no,manager_name,salary,deptNo,deptName,floor from vw_full_employee";
 		try (Connection con = JdbcConn.getconnection();) {
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = pstmt.executeQuery(); // select 할때만 사용
 			{
 				if (rs.next()) {
-					List<EmployeeDto> list = new ArrayList<>();
+					List<Employee> list = new ArrayList<>();
 					do {
 						list.add(getEmployee(rs));
 					} while (rs.next());
@@ -51,21 +51,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return null;
 	}
+	
+	
 
 	// -------------------- GetEmployee ----------------------
-	private EmployeeDto getEmployee(ResultSet rs) throws SQLException { // 조인쉨들 처주는 방법
+	private Employee getEmployee(ResultSet rs) throws SQLException { // 조인쉨들 처주는 방법
 
 		int empNo = rs.getInt("empno");
 
 		String empName = rs.getString("empName");
 
-		TitleDto title = new TitleDto(rs.getInt("title_no"));
+		Title title = new Title(rs.getInt("title_no"));
 
-		EmployeeDto manager = new EmployeeDto(rs.getInt("manager_no"));
+		Employee manager = new Employee(rs.getInt("manager_no"));
 
 		int salary = rs.getInt("salary");
 
-		DepartmentDto dept = new DepartmentDto(rs.getInt("deptNo"));
+		Department dept = new Department(rs.getInt("deptNo"));
 
 		try {
 			title.settName(rs.getString("title_name"));
@@ -83,12 +85,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (SQLException e) {
 		}
 
-		return new EmployeeDto(empNo, empName, title, manager, salary, dept);
+		return new Employee(empNo, empName, title, manager, salary, dept);
 	}
 
 	// -------------------- SelectEmployeeByNo ----------------------
 	@Override
-	public EmployeeDto selectEmployeeByNo(EmployeeDto emp) {
+	public Employee selectEmployeeByNo(Employee emp) {
 		String sql = "select empno, empname, title as title_no, manager as manager_no, salary, dept as deptNo from employee where empno = ?";
 		try (Connection con = JdbcConn.getconnection();) {
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -111,7 +113,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	// -------------------- InsertEmployee ----------------------
 	@Override
-	public int insertEmployee(EmployeeDto emp) {
+	public int insertEmployee(Employee emp) {
 		String sql = "insert into employee values(?, ?, ?, ? , ?, ?)";
 		try (Connection con = JdbcConn.getconnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 
@@ -133,7 +135,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	// -------------------- updateEmployee ----------------------
 	@Override
-	public int updateEmployee(EmployeeDto emp) {
+	public int updateEmployee(Employee emp) {
 
 		String sql = "update employee" + "	set  empname=?, title=?,manager=?, salary=?, dept=?"
 				+ "	where empno = ?";
@@ -153,6 +155,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return 0;
 	}
+	
+	
+	
 
 	@Override
 	public int deleteEmployee(int employeeNo) {
@@ -168,9 +173,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return 0;
 	}
+	
+	
+	
 
 	@Override
-	public List<EmployeeDto> selectEmployeeByAllTitle(TitleDto title) {
+	public List<Employee> selectEmployeeByAllTitle(Title title) {
 
 		String sql = "select empname, empno" + "  from employee e" + "  join title t" + "    on e.title  = t.tno"
 				+ " where tno = ?";
@@ -178,7 +186,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			pstmt.setInt(1, title.gettNo());
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					List<EmployeeDto> list = new ArrayList<>();
+					List<Employee> list = new ArrayList<>();
 					do {
 						list.add(getEmployee(rs));
 					} while (rs.next());
@@ -191,16 +199,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return null;
 
 	}
+	
+	
+	
+	
 
 	@Override
-	public List<EmployeeDto> selectEmployeeByDept(DepartmentDto department) {
+	public List<Employee> selectEmployeeByDept(Department department) {
 		String sql = "select empname, empno" + "  from employee e " + "  join department d"
 				+ "    on e.dept = d.deptNo " + " where dept = ?";
 		try (Connection con = JdbcConn.getconnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, department.getDeptNo());
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					List<EmployeeDto> list = new ArrayList<>();
+					List<Employee> list = new ArrayList<>();
 					do {
 						list.add(getEmployee3(rs));
 					} while (rs.next());
@@ -212,11 +224,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return null;
 	}
+	
+	
+	
+	
+	
+	
 
-	private EmployeeDto getEmployee3(ResultSet rs) throws SQLException {
+	private Employee getEmployee3(ResultSet rs) throws SQLException {
 		int empNo = rs.getInt("empno");
 		String empName = rs.getString("empName");
-		return new EmployeeDto(empNo, empName);
+		return new Employee(empNo, empName);
 	}
 
 }

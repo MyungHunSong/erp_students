@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import erp_students_daoImpl.TitleDaoImpl;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Title;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -26,11 +26,11 @@ public class TitleDaoTest {
 	@Test
 	public void testSelectTitleByAll04() {
 		System.out.printf("%s()%n", "testSelectTitleByAll()");
-		List<TitleDto> titleList = dao.selectTitleByAll();
+		List<Title> titleList = dao.selectTitleByAll();
 		Assert.assertNotNull(titleList);
 		
 //		titleList.stream().forEach(System.out::println); 이건 swing 에있는것이다.
-		for(TitleDto t : titleList) { // 왼쪽에 선한한것을 오른쪽의 titleList 길이만큼 반복해 준다.
+		for(Title t : titleList) { // 왼쪽에 선한한것을 오른쪽의 titleList 길이만큼 반복해 준다.
 			System.out.println(t);
 		}
 	}
@@ -40,8 +40,8 @@ public class TitleDaoTest {
 	@Test
 	public void testSelectTitleByNo05() {
 		System.out.printf("%s()%n" , "testSelectTitleByNo()");
-		TitleDto title = new TitleDto(5);
-		TitleDto searchTitle = dao.selectTitleByNo(title);
+		Title title = new Title(5);
+		Title searchTitle = dao.selectTitleByNo(title);
 		Assert.assertNotNull(searchTitle);
 		System.out.println(searchTitle);
 	}
@@ -49,7 +49,7 @@ public class TitleDaoTest {
 	@Test
 	public void testInsertTitle01() {
 		System.out.printf("%s()%n", "testInsertTitle()");
-		TitleDto newTitle = new TitleDto(6, "인턴");
+		Title newTitle = new Title(6, "인턴");
 		int res = dao.insertTitle(newTitle);
 		Assert.assertEquals(1, res); //자바용 단위 테스트 작성을 위한 프레임워크
 		
@@ -60,7 +60,7 @@ public class TitleDaoTest {
 	@Test
 	public void testUpdateTitle02() {
 		System.out.printf("%s()%n", "testUpdateTitle");
-		TitleDto newTitle = new TitleDto(6, "계약직");
+		Title newTitle = new Title(6, "계약직");
 		int res = dao.updateTitle(newTitle);
 		Assert.assertEquals(1, res);
 		

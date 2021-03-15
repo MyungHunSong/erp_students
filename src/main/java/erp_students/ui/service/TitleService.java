@@ -6,31 +6,31 @@ import erp_students_dao.EmployeeDao;
 import erp_students_dao.TitleDao;
 import erp_students_daoImpl.EmployeeDaoImpl;
 import erp_students_daoImpl.TitleDaoImpl;
-import erp_students_dto.EmployeeDto;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Employee;
+import erp_students_dto.Title;
 
 public class TitleService { // 여기서 가져야 하는것은 title dao
 	private TitleDao dao = TitleDaoImpl.getInstance();
 	private EmployeeDao empDao = EmployeeDaoImpl.getInstance();
 	
-	public List<TitleDto> showTitles(){ // 다장 필요한것은 이것이다 (타이틀 타입 리스트를 보여달라 이새끼야)
+	public List<Title> showTitles(){ // 다장 필요한것은 이것이다 (타이틀 타입 리스트를 보여달라 이새끼야)
 		return dao.selectTitleByAll(); //요렇게 받아와서 수행하면 그만이잖아
 	}
 	
-	public void addTitle(TitleDto title) {
+	public void addTitle(Title title) {
 		dao.insertTitle(title);
 		
 	}
 	
-	public void removeTitle(TitleDto title) {
+	public void removeTitle(Title title) {
 		dao.deleteTitle(title.gettNo());
 	}
 	
-	public void modify(TitleDto title) {
+	public void modify(Title title) {
 		dao.updateTitle(title);
 	}
 	
-	public List<EmployeeDto> showEmployeeGroupBy(TitleDto title){
+	public List<Employee> showEmployeeGroupByTitle(Title title){
 		return empDao.selectEmployeeByAllTitle(title);
 	}
 			

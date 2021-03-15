@@ -1,4 +1,4 @@
-package erp_students.ui.content.list;
+package erp_students.ui.list;
 
 import java.awt.BorderLayout;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import erp_students.ui.exception.NotSelectedException;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Title;
 
 
 
@@ -129,6 +129,20 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	protected abstract void setAlignAndWidth();

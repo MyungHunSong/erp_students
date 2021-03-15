@@ -1,13 +1,13 @@
-package erp_students.ui.content.list;
+package erp_students.ui.list;
 
 import javax.swing.SwingConstants;
 
 import erp_students.ui.service.DepartmentService;
-import erp_students_dto.DepartmentDto;
+import erp_students_dto.Department;
 
 @SuppressWarnings("serial")
-public class DepartmentTablePanel extends AbstractCustomTablePanel<DepartmentDto> {
-	private DepartmentService service = new DepartmentService();
+public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
+	private DepartmentService service;
 	
 	@Override
 	public void initList() {
@@ -33,9 +33,16 @@ public class DepartmentTablePanel extends AbstractCustomTablePanel<DepartmentDto
 	}
 
 	@Override
-	protected Object[] toArray(DepartmentDto t) {
+	protected Object[] toArray(Department t) {
 		
 		return new Object[] {t.getDeptNo(), t.getDeptName(), t.getFloor()};
 	}
+
+	public void setService(DepartmentService service) {
+		this.service = service;
+		
+	}
+
+	
 
 }

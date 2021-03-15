@@ -1,12 +1,12 @@
-package erp_students.ui.content.list;
+package erp_students.ui.list;
 
 import javax.swing.SwingConstants;
 
 import erp_students.ui.service.EmployeeService;
-import erp_students_dto.EmployeeDto;
+import erp_students_dto.Employee;
 
 @SuppressWarnings("serial")
-public class EmployeeTablePanel extends AbstractCustomTablePanel<EmployeeDto> {
+public class EmployeeTablePanel extends AbstractCustomTablePanel<Employee> {
 	
 	private EmployeeService service;
 	
@@ -23,7 +23,7 @@ public class EmployeeTablePanel extends AbstractCustomTablePanel<EmployeeDto> {
 	}
 
 	@Override
-	protected Object[] toArray(EmployeeDto t) {
+	protected Object[] toArray(Employee t) {
 		
 		return new Object[] {
 			t.getEmpNo(),

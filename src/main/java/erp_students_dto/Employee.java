@@ -1,28 +1,28 @@
 package erp_students_dto;
 
-public class EmployeeDto {
+public class Employee {
 	private int empNo;
 	private String empName;
-	private TitleDto title; // 외래키의 참조 땜에 밑에거도 이럼
-	private EmployeeDto manager;
+	private Title title; // 외래키의 참조 땜에 밑에거도 이럼
+	private Employee manager;
 	private int salary;
-	private DepartmentDto dept;
+	private Department dept;
 
 
-	public EmployeeDto(int empNo) {
+	public Employee(int empNo) {
 		this.empNo = empNo;
 	}
 	
 	
 
-	public EmployeeDto(int empNo, String empName) {
+	public Employee(int empNo, String empName) {
 		this.empNo = empNo;
 		this.empName = empName;
 	}
 
 
 
-	public EmployeeDto(int empNo, String empName, TitleDto title, EmployeeDto manager, int salary, DepartmentDto dept) {
+	public Employee(int empNo, String empName, Title title, Employee manager, int salary, Department dept) {
 		this.empNo = empNo;
 		this.empName = empName;
 		this.title = title;
@@ -49,19 +49,19 @@ public class EmployeeDto {
 		this.empName = empName;
 	}
 
-	public TitleDto getTitle() {
+	public Title getTitle() {
 		return title;
 	}
 
-	public void setTitle(TitleDto title) {
+	public void setTitle(Title title) {
 		this.title = title;
 	}
 
-	public EmployeeDto getManager() {
+	public Employee getManager() {
 		return manager;
 	}
 
-	public void setManager(EmployeeDto manager) {
+	public void setManager(Employee manager) {
 		this.manager = manager;
 	}
 
@@ -73,11 +73,11 @@ public class EmployeeDto {
 		this.salary = salary;
 	}
 
-	public DepartmentDto getDept() {
+	public Department getDept() {
 		return dept;
 	}
 
-	public void setDept(DepartmentDto dept) {
+	public void setDept(Department dept) {
 		this.dept = dept;
 	}
 

@@ -1,29 +1,29 @@
 package erp_students_dto;
 
-public class DepartmentDto {
+public class Department {
 	private int deptNo;
 	private String deptName;
 	private int floor;
 	
-	public DepartmentDto() {
+	public Department() {
 
 	}
 	
 	
 // private List<Employee> empList;
-	public DepartmentDto(int deptNo) {
+	public Department(int deptNo) {
 		this.deptNo = deptNo;
 	}
 
 	
 
-	public DepartmentDto(String deptName) {
+	public Department(String deptName) {
 		this.deptName = deptName;
 	}
 	
 
 
-	public DepartmentDto(int deptNo, String deptName, int floor) {
+	public Department(int deptNo, String deptName, int floor) {
 		this.deptNo = deptNo;
 		this.deptName = deptName;
 		this.floor = floor;
@@ -76,7 +76,7 @@ public class DepartmentDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DepartmentDto other = (DepartmentDto) obj;
+		Department other = (Department) obj;
 		if (deptNo != other.deptNo)
 			return false;
 		return true;

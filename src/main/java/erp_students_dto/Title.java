@@ -1,19 +1,19 @@
 package erp_students_dto;
 
-public class TitleDto {
+public class Title {
 
 	private int tNo;
 	private String tName;
 	
-	public TitleDto() {
+	public Title() {
 		
 	}
 	
-	public TitleDto(int tNo) {
+	public Title(int tNo) {
 		this.tNo = tNo;
 	}
 
-	public TitleDto(int tNo, String tName) {
+	public Title(int tNo, String tName) {
 		this.tNo = tNo;
 		this.tName = tName;
 	}
@@ -50,7 +50,7 @@ public class TitleDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TitleDto other = (TitleDto) obj;
+		Title other = (Title) obj;
 		if (tNo != other.tNo)
 			return false;
 		return true;

@@ -26,24 +26,26 @@ import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import erp_students.ui.exception.InvalidCheckException;
 import erp_students.ui.service.EmployeeService;
 import erp_students.ui.service.TitleService;
-import erp_students_dto.DepartmentDto;
-import erp_students_dto.EmployeeDto;
-import erp_students_dto.TitleDto;
+import erp_students_dto.Department;
+import erp_students_dto.Employee;
+import erp_students_dto.Title;
 
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.ItemListener;
 
 @SuppressWarnings("serial")
-public class EmployeePanel extends JPanel implements ItemListener {
+public class EmployeePanel extends InterfaceItem<Employee> implements ItemListener {
 	private JTextField tfNo;
 	private JTextField tfName;
-	private JComboBox<TitleDto> cmbTitle;
-	private JComboBox<EmployeeDto> cmbManager;
+	private JComboBox<Title> cmbTitle;
+	private JComboBox<Employee> cmbManager;
 	private JSpinner spinSalary;
-	private JComboBox<DepartmentDto> cmbDept;
+	private JComboBox<Department> cmbDept;
 	private EmployeeService service;
+	
 
 	public EmployeePanel() {
 
@@ -52,7 +54,7 @@ public class EmployeePanel extends JPanel implements ItemListener {
 	
 	
 	
-	private void initialize() {
+	public void initialize() {
 		setBorder(new TitledBorder(null, "사원 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -123,32 +125,8 @@ public class EmployeePanel extends JPanel implements ItemListener {
 	
 	
 
-	public void setEmployee(EmployeeDto e) {
-		tfNo.setText(e.getEmpNo()+ "");
-		tfName.setText(e.getEmpName());
-		cmbTitle.setSelectedItem(e.getTitle());
-		cmbDept.setSelectedItem(e.getDept());
-		cmbManager.setSelectedItem(e.getManager());
-		spinSalary.setValue(e.getSalary());
-		
-		
-		
-		//Employee(int empNo, String empName,
-		//Title title, Employee manager,
-		//int salary, Department dept)
-	}
 	
-	public EmployeeDto getEmployee() {
-		int empNo = Integer.parseInt(tfNo.getText().trim());
-		String empName = tfName.getText().trim();
-		TitleDto title = (TitleDto) cmbTitle.getSelectedItem();
-		EmployeeDto manager = (EmployeeDto)cmbManager.getSelectedItem();
-		int salary = (int) spinSalary.getValue();
-		DepartmentDto dept = (DepartmentDto)cmbDept.getSelectedItem();
-		
-		return new EmployeeDto(empNo, empName, title, manager, salary, dept);
-	}
-	
+
 	public void clearTf() {
 		tfNo.setText("");
 		tfName.setText("");
@@ -158,11 +136,11 @@ public class EmployeePanel extends JPanel implements ItemListener {
 	public void setService(EmployeeService service) {
 		this.service = service;
 		
-		List<DepartmentDto> deptList = service.showDeptList();
+		List<Department> deptList = service.showDeptList();
 		DefaultComboBoxModel deptModel = new DefaultComboBoxModel<>(new Vector<>(deptList));
 		cmbDept.setModel(deptModel);
 
-		List<TitleDto> titleList = service.showTitleList();
+		List<Title> titleList = service.showTitleList();
 		DefaultComboBoxModel titleModel = new DefaultComboBoxModel<>(new Vector<> (titleList));
 		cmbTitle.setModel(titleModel);
 		
@@ -181,8 +159,8 @@ public class EmployeePanel extends JPanel implements ItemListener {
 	}
 	protected void itemStateChangedCmbDept(ItemEvent e) {
 		if(e.getStateChange() == ItemEvent.SELECTED) {
-			DepartmentDto dept = (DepartmentDto) cmbDept.getSelectedItem();
-			List<EmployeeDto> empByDeptList = service.showEmployeeByDept(dept);
+			Department dept = (Department) cmbDept.getSelectedItem();
+			List<Employee> empByDeptList = service.showEmployeeByDept(dept);
 			
 			//직속 상사가 없는 경우 추가
 			if(empByDeptList == null) {
@@ -194,5 +172,43 @@ public class EmployeePanel extends JPanel implements ItemListener {
 			cmbManager.setSelectedItem(-1);
 		}
 			
+	}
+
+
+	@Override
+	public void setItem(Employee item) {
+		
+		tfNo.setText(item.getEmpNo()+ "");
+		tfName.setText(item.getEmpName());
+		cmbTitle.setSelectedItem(item.getTitle());
+		cmbDept.setSelectedItem(item.getDept());
+		cmbManager.setSelectedItem(item.getManager());
+		spinSalary.setValue(item.getSalary());
+		
+		
+	}
+
+
+
+	@Override
+	public Employee getItem() {
+		int empNo = Integer.parseInt(tfNo.getText().trim());
+		String empName = tfName.getText().trim();
+		Title title = (Title) cmbTitle.getSelectedItem();
+		Employee manager = (Employee)cmbManager.getSelectedItem();
+		int salary = (int) spinSalary.getValue();
+		Department dept = (Department)cmbDept.getSelectedItem();
+		
+		return new Employee(empNo, empName, title, manager, salary, dept);
+	}
+
+
+
+	@Override
+	public void validCheck() {
+		if(tfNo.getText().contentEquals("") || tfName.getText().equals("")) {
+			throw new InvalidCheckException();
+		}
+		
 	}
 }
