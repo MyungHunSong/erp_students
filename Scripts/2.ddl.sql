@@ -51,13 +51,14 @@ ALTER TABLE erp.employee
 			empno -- 사원번호
 		);
 
+
 -- 세부정보
 CREATE TABLE erp.erp_detail (
 	empno     INT          NOT NULL COMMENT '사원번호', -- 사원번호
-	prc       LONGBLOB     NULL     COMMENT '증명사진', -- 증명사진
+	pic       LONGBLOB     NULL     COMMENT '증명사진', -- 증명사진
 	gendel    TINYINT(1) NULL     COMMENT '성별', -- 성별
 	startDate DATE         NULL     COMMENT '입사일', -- 입사일
-	비밀번호  CHAR(41)     NULL     COMMENT 'pass' -- pass
+	pass      CHAR(41)     NULL     COMMENT '비밀번호' -- 비밀번호
 )
 COMMENT '세부정보';
 

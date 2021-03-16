@@ -19,12 +19,24 @@ public class EmployeeDetail {
 	public EmployeeDetail(int empNo) {
 		this.empNo = empNo;
 	}
+	
+	
+	
 
 
 	public EmployeeDetail(int empNo, boolean gender, Date hireDate, byte[] pic) {
 		this.empNo = empNo;
 		this.gender = gender;
 		this.hireDate = hireDate;
+		this.pic = pic;
+	}
+
+
+	public EmployeeDetail(int empNo, boolean gender, Date hireDate, String pass, byte[] pic) {
+		this.empNo = empNo;
+		this.gender = gender;
+		this.hireDate = hireDate;
+		this.pass = pass;
 		this.pic = pic;
 	}
 
@@ -71,6 +83,16 @@ public class EmployeeDetail {
 	
 
 
+	public String getPass() {
+		return pass;
+	}
+
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+
 	public EmployeeDetail(String pass) {
 		this.pass = pass;
 	}
@@ -79,7 +101,7 @@ public class EmployeeDetail {
 	@Override
 	public String toString() {
 		return String.format("EmpDetail [empNo=%s, gender=%s, hireDate=%s, pic=%s]", empNo, gender, hireDate,
-				Arrays.toString(pic));
+				pic.length);
 	}
 	
 	

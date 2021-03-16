@@ -40,7 +40,15 @@ select password('*A02AA727CF2E8C5E6F07A382910C4028D65A053A')
 -- 길이비교
 select passwrod('1234')
 
+-- 
+insert into erp_detail(empno, pic, gendel, startDate, pass) values(?,?,?,?,?);
 
+select * from erp_detail; -- 이미지 파일없으면 null 뜬다.
 
+delete from erp_detail where empno = 1003;
+--  
 
+select empno, pic, gendel, startDate,pass from erp_detail where empno = 1003;
+
+update erp_detail  set empno=1004, pic= 1, gendel = '여', startDate = 20200308, pass = 1111  where empno = 1003;
 

@@ -16,6 +16,8 @@ import erp_students_dto.Title;
 
 @SuppressWarnings("serial")
 public class TitleManagerUI extends AbstractManagerUI<Title> {
+	public TitleManagerUI() {
+	}
 	private TitleService service;
 	
 	

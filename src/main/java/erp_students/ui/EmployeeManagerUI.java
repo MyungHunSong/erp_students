@@ -13,6 +13,8 @@ import erp_students_dto.Employee;
 
 @SuppressWarnings("serial")
 public class EmployeeManagerUI extends AbstractManagerUI<Employee> {
+	public EmployeeManagerUI() {
+	}
 	
 	private EmployeeService service;
 	

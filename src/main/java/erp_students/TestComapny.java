@@ -44,11 +44,11 @@ public class TestComapny extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 10, 10));
 		
-		EmployeeTablePanel panel = new EmployeeTablePanel();
-		contentPane.add(panel);
+		EmployeeTablePanel panel1 = new EmployeeTablePanel();
+		contentPane.add(panel1);
 		
-		EmployeeDetailPanel panel_1 = new EmployeeDetailPanel();
-		contentPane.add(panel_1);
+		EmployeeDetailPanel panel2 = new EmployeeDetailPanel();
+		contentPane.add(panel2);
 	}
 
 }
