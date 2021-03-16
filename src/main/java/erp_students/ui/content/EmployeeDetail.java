@@ -1,26 +1,26 @@
-package erp_students_dto;
+package erp_students.ui.content;
 
 import java.util.Arrays;
 import java.util.Date;
 
-public class EmpDetail {
+public class EmployeeDetail {
 	private int empNo;
 	private boolean gender;
 	private Date hireDate; // 이거 잘바도랑
 	private byte[] pic;  //이미지는 바이트 배열로 저장된다 잘 기억 해두락
 	
 	
-	public EmpDetail() {
+	public EmployeeDetail() {
 		
 	}
 
 
-	public EmpDetail(int empNo) {
+	public EmployeeDetail(int empNo) {
 		this.empNo = empNo;
 	}
 
 
-	public EmpDetail(int empNo, boolean gender, Date hireDate, byte[] pic) {
+	public EmployeeDetail(int empNo, boolean gender, Date hireDate, byte[] pic) {
 		this.empNo = empNo;
 		this.gender = gender;
 		this.hireDate = hireDate;

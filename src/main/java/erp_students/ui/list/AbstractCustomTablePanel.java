@@ -206,6 +206,17 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 			return false;
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+	
 	
 
 }

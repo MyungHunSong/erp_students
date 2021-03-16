@@ -2,14 +2,9 @@ package erp_students.ui.content;
 
 import javax.swing.JPanel;
 
-public abstract class InterfaceItem<T> extends JPanel {
+@SuppressWarnings("serial")
+public abstract class AbstractContentPanel<T> extends JPanel {
 	
-	public InterfaceItem() {
-
-		initialize();
-	}
-	
-	public abstract void initialize();
 	
 	public abstract void setItem(T item);
 	public abstract T getItem();

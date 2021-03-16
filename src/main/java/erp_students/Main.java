@@ -2,19 +2,18 @@ package erp_students;
 
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import erp_students.ui.DepartmentManager;
-import erp_students.ui.Employee_TestFrame;
-import erp_students.ui.TitleManager;
-
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import erp_students.ui.DepartmentManagerUI;
+import erp_students.ui.EmployeeManagerUI;
+import erp_students.ui.TitleManagerUI;
 
 @SuppressWarnings("serial")
 public class Main extends JFrame implements ActionListener {
@@ -82,16 +81,19 @@ public class Main extends JFrame implements ActionListener {
 	
 	
 	protected void actionPerformedBtnTitle(ActionEvent e) {
-		TitleManager frame = new TitleManager();
+		TitleManagerUI frame = new TitleManagerUI();
+		setTitle("직책관리");
 		frame.setVisible(true);
 	}
 	
 	protected void actionPerformedBtnDepartment(ActionEvent e) {
-		DepartmentManager frame = new DepartmentManager();
+		DepartmentManagerUI frame = new DepartmentManagerUI();
+		setTitle("부서관리");
 		frame.setVisible(true);
 	}
 	protected void actionPerformedBtnEmployee(ActionEvent e) {
-		Employee_TestFrame frame = new Employee_TestFrame();
+		EmployeeManagerUI frame = new EmployeeManagerUI();
+		setTitle("사원관리");
 		frame.setVisible(true);
 	}
 }

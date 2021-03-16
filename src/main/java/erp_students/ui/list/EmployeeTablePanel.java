@@ -7,6 +7,8 @@ import erp_students_dto.Employee;
 
 @SuppressWarnings("serial")
 public class EmployeeTablePanel extends AbstractCustomTablePanel<Employee> {
+	public EmployeeTablePanel() {
+	}
 	
 	private EmployeeService service;
 	
