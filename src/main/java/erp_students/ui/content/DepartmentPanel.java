@@ -3,30 +3,32 @@ package erp_students.ui.content;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import erp_students.ui.exception.InvalidCheckException;
-import erp_students_dao.DepartmentDao;
 import erp_students_dto.Department;
 
 
 
 @SuppressWarnings("serial")
-public class DepartmentPanel extends InterfaceItem<Department> {
+public class DepartmentPanel extends AbstractContentPanel<Department> {
 	private JTextField tfDeptNo;
 	private JTextField tfDeptName;
 	private JTextField tfFloor;
 
-	public DepartmentPanel() {
+	
+	
 
+	
+	public DepartmentPanel() {
+		
+		
 		initialize();
 	}
 	
-	@Override
-	public void initialize() {
+	private void initialize() {
 		setBorder(new TitledBorder(null, "부서 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new GridLayout(0, 2, 10, 10));
 		

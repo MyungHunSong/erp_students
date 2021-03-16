@@ -7,6 +7,8 @@ import erp_students_dto.Department;
 
 @SuppressWarnings("serial")
 public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
+	public DepartmentTablePanel() {
+	}
 	private DepartmentService service;
 	
 	@Override

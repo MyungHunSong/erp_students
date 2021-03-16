@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import erp_students.erpdatabase.JdbcConn;
+import erp_students.ui.exception.SqlConstraintException;
 import erp_students_dao.EmployeeDao;
 import erp_students_dto.Department;
 import erp_students_dto.Employee;
@@ -51,8 +52,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return null;
 	}
-	
-	
 
 	// -------------------- GetEmployee ----------------------
 	private Employee getEmployee(ResultSet rs) throws SQLException { // 조인쉨들 처주는 방법
@@ -127,10 +126,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			return pstmt.executeUpdate(); // 리턴
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			throw new SqlConstraintException(e.getMessage(), e);
 		}
-		return 0;
+
 	}
 
 	// -------------------- updateEmployee ----------------------
@@ -155,9 +153,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return 0;
 	}
-	
-	
-	
 
 	@Override
 	public int deleteEmployee(int employeeNo) {
@@ -173,9 +168,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return 0;
 	}
-	
-	
-	
 
 	@Override
 	public List<Employee> selectEmployeeByAllTitle(Title title) {
@@ -199,10 +191,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return null;
 
 	}
-	
-	
-	
-	
 
 	@Override
 	public List<Employee> selectEmployeeByDept(Department department) {
@@ -224,12 +212,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return null;
 	}
-	
-	
-	
-	
-	
-	
 
 	private Employee getEmployee3(ResultSet rs) throws SQLException {
 		int empNo = rs.getInt("empno");

@@ -45,6 +45,8 @@ public class EmployeeService {
 		employeeDao.deleteEmployee(employee.getEmpNo());
 	}
 	
-	
+	public void modifyEmployee(Employee employee) {
+		employeeDao.updateEmployee(employee);
+	}
 	
 }

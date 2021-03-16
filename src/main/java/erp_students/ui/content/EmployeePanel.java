@@ -1,43 +1,31 @@
 package erp_students.ui.content;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import com.toedter.calendar.JDateChooser;
-
 import erp_students.ui.exception.InvalidCheckException;
 import erp_students.ui.service.EmployeeService;
-import erp_students.ui.service.TitleService;
 import erp_students_dto.Department;
 import erp_students_dto.Employee;
 import erp_students_dto.Title;
 
-import javax.swing.SpinnerNumberModel;
-import java.awt.event.ItemListener;
-
 @SuppressWarnings("serial")
-public class EmployeePanel extends InterfaceItem<Employee> implements ItemListener {
+public class EmployeePanel extends AbstractContentPanel<Employee> implements ItemListener {
 	private JTextField tfNo;
 	private JTextField tfName;
 	private JComboBox<Title> cmbTitle;
@@ -46,6 +34,8 @@ public class EmployeePanel extends InterfaceItem<Employee> implements ItemListen
 	private JComboBox<Department> cmbDept;
 	private EmployeeService service;
 	
+	
+
 
 	public EmployeePanel() {
 
@@ -54,7 +44,7 @@ public class EmployeePanel extends InterfaceItem<Employee> implements ItemListen
 	
 	
 	
-	public void initialize() {
+	private void initialize() {
 		setBorder(new TitledBorder(null, "사원 정보", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
