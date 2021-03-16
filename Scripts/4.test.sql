@@ -31,4 +31,16 @@ select *
 select empno, empname 
 	from employee e join department d on e.dept = d.deptNo
 	where deptno = 2;
-	
+
+-- password 길이 확인 (해쉬 함수를 저곳에 넣어주면 숫자로 바꿔준다 ) -- 해쉬 함수는 단방향 함수이다 --
+-- 단방향 함수(Hash:MDS)
+select password('*A02AA727CF2E8C5E6F07A382910C4028D65A053A')
+	, length(password('*A02AA727CF2E8C5E6F07A382910C4028D65A053A')) from dual;
+
+-- 길이비교
+select passwrod('1234')
+
+
+
+
+

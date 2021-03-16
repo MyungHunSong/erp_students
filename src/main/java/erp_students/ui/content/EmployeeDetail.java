@@ -8,6 +8,7 @@ public class EmployeeDetail {
 	private boolean gender;
 	private Date hireDate; // 이거 잘바도랑
 	private byte[] pic;  //이미지는 바이트 배열로 저장된다 잘 기억 해두락
+	private String pass;
 	
 	
 	public EmployeeDetail() {
@@ -65,6 +66,13 @@ public class EmployeeDetail {
 
 	public void setPic(byte[] pic) {
 		this.pic = pic;
+	}
+	
+	
+
+
+	public EmployeeDetail(String pass) {
+		this.pass = pass;
 	}
 
 

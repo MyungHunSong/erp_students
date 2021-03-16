@@ -51,17 +51,22 @@ ALTER TABLE erp.employee
 			empno -- 사원번호
 		);
 
-
-
-
 -- 세부정보
 CREATE TABLE erp.erp_detail (
-	empno     INT          NULL COMMENT '사원정보', -- 사원정보
-	prc       LONGBLOB     NULL COMMENT '증명사진', -- 증명사진
-	gendel    TINYINT(1) NULL COMMENT '성별', -- 성별
-	startDate DATE         NULL COMMENT '입사일' -- 입사일
+	empno     INT          NOT NULL COMMENT '사원번호', -- 사원번호
+	prc       LONGBLOB     NULL     COMMENT '증명사진', -- 증명사진
+	gendel    TINYINT(1) NULL     COMMENT '성별', -- 성별
+	startDate DATE         NULL     COMMENT '입사일', -- 입사일
+	비밀번호  CHAR(41)     NULL     COMMENT 'pass' -- pass
 )
 COMMENT '세부정보';
+
+-- 세부정보
+ALTER TABLE erp.erp_detail
+	ADD CONSTRAINT PK_erp_detail -- 세부정보 기본키
+		PRIMARY KEY (
+			empno -- 사원번호
+		);
 
 -- 사원
 ALTER TABLE erp.employee
@@ -97,11 +102,8 @@ ALTER TABLE erp.employee
 ALTER TABLE erp.erp_detail
 	ADD CONSTRAINT FK_employee_TO_erp_detail -- 사원 -> 세부정보
 		FOREIGN KEY (
-			empno -- 사원정보
+			empno -- 사원번호
 		)
 		REFERENCES erp.employee ( -- 사원
 			empno -- 사원번호
 		);
-		
-
-	
