@@ -12,6 +12,7 @@ import erp_students.erpdatabase.JdbcConn;
 import erp_students.ui.content.EmployeeDetail;
 import erp_students.ui.exception.SqlConstraintException;
 import erp_students_dao.EmployeeDetailDao;
+import erp_students_dto.Employee;
 
 
 
@@ -30,44 +31,46 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 	private EmployeeDetailDaoImpl() {}
 	
 	
-	
-	
-
 	@Override
-	public EmployeeDetail selectEmployeeDetailByNo(EmployeeDetail empDetail) {
-		String sql = "select empno, pic, gendel, startDate,pass from erp_detail where empno = ?";
-	
-		try (Connection con = JdbcConn.getconnection();) {
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			{
-				pstmt.setInt(1, empDetail.getEmpNo()); // 위에 있는거 쿼리문 세팅(where 절)
-				System.out.println(pstmt);
-
-				try (ResultSet rs = pstmt.executeQuery()) { // where 조건절 을 위해서 결과를 가져오는
-					if (rs.next()) {
-						return getEmployeeDetail(rs);
-					}
-
-				}
+	public EmployeeDetail selectEmployeeDetailByNo(Employee employee) {
+		String sql = "select empno, pic, gendel, startDate, pass from erp_detail where empno = ?";
+		
+		try(Connection con = JdbcConn.getconnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			pstmt.setInt(1, employee.getEmpNo());
+			
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+				return getEmployeeDetail(rs);
 			}
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
 		}
 		return null;
-	}
+	
+}
+	
+	
+	
 	
 	
 	
 
-	private EmployeeDetail getEmployeeDetail(ResultSet rs) throws SQLException {
+	private EmployeeDetail getEmployeeDetail(ResultSet rs) throws SQLException{
 		int empNo = rs.getInt("empno");
 		boolean gender = rs.getBoolean("gendel");
 		Timestamp hireDate = rs.getTimestamp("startDate");
 		byte[] pic = rs.getBytes("pic");
-				
-			
 		return new EmployeeDetail(empNo, gender, hireDate, pic);
 	}
+
+
+	
+
+
 	
 	
 	
@@ -131,5 +134,7 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 		}
 		return 0;
 	}
+
+	
 
 }
