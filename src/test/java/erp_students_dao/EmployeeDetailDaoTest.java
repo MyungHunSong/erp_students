@@ -41,7 +41,7 @@ public class EmployeeDetailDaoTest {
 	public void test02SelectEmployeeDetailByNo() {
 		System.out.printf("%s()%n", "testSelectEmployeeDetailByNo()");
 		
-		EmployeeDetail employeeDetail = dao.selectEmployeeDetailByNo(new EmployeeDetail(1003));
+		EmployeeDetail employeeDetail = dao.selectEmployeeDetailByNo(new Employee(1003));
 		Assert.assertNotNull(employeeDetail);
 		
 		System.out.println(employeeDetail);
