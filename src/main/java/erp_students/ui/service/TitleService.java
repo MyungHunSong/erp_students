@@ -17,18 +17,22 @@ public class TitleService { // 여기서 가져야 하는것은 title dao
 		return dao.selectTitleByAll(); //요렇게 받아와서 수행하면 그만이잖아
 	}
 	
+	
 	public void addTitle(Title title) {
 		dao.insertTitle(title);
 		
 	}
 	
+	
 	public void removeTitle(Title title) {
 		dao.deleteTitle(title.gettNo());
 	}
 	
+	
 	public void modify(Title title) {
 		dao.updateTitle(title);
 	}
+	
 	
 	public List<Employee> showEmployeeGroupByTitle(Title title){
 		return empDao.selectEmployeeByAllTitle(title);

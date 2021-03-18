@@ -9,10 +9,10 @@ import java.sql.Timestamp;
 
 
 import erp_students.erpdatabase.JdbcConn;
-import erp_students.ui.content.EmployeeDetail;
 import erp_students.ui.exception.SqlConstraintException;
 import erp_students_dao.EmployeeDetailDao;
 import erp_students_dto.Employee;
+import erp_students_dto.EmployeeDetail;
 
 
 
@@ -42,7 +42,9 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 			
 			
 			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
 				return getEmployeeDetail(rs);
+				}
 			}
 			
 		} catch (SQLException e) {
@@ -52,9 +54,6 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 		return null;
 	
 }
-	
-	
-	
 	
 	
 	
@@ -68,16 +67,8 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 	}
 
 
-	
 
-
-	
-	
-	
-	
-	
-	
-
+	// --------- insert ----------
 	@Override
 	public int insertEmployeeDetail(EmployeeDetail empDetail) {
 		String sql = "insert into erp_detail(empno, pic, gendel, startDate, pass) values(?,?,?,?,?)"; // 패스어드
@@ -99,13 +90,13 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 	}
 
 	
-
+	// --------- delete ----------
 	@Override
-	public int deleteEmployeeDetail(int employeeNo) {
+	public int deleteEmployeeDetail(Employee employee) {
 		String sql = "delete from erp_detail where empno = ?";
 		try (Connection con = JdbcConn.getconnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 
-			pstmt.setInt(1, employeeNo);
+			pstmt.setInt(1, employee.getEmpNo());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -115,7 +106,8 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 		return 0;
 		
 	}
-
+	
+	// --------- update ----------
 	@Override
 	public int updateEmployeeDetail(EmployeeDetail empDetail) {
 		String sql = "update erp_detail  set pic=?, gendel =?, startDate = ?, pass = ? where empno = ?;";
@@ -135,6 +127,5 @@ public class EmployeeDetailDaoImpl implements EmployeeDetailDao {
 		return 0;
 	}
 
-	
 
 }

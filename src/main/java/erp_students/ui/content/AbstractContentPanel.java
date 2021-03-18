@@ -10,5 +10,4 @@ public abstract class AbstractContentPanel<T> extends JPanel {
 	public abstract T getItem();
 	public abstract void validCheck();
 	public abstract void clearTf();	
-	
 }

@@ -126,16 +126,15 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	@Override
 	public int updateDepartment(Department department) {
 		
-		String sql = "update department set deptNo = ? where deptName = ?";
+		String sql = "update department set deptName = ? where deptNo = ?";
 		try(Connection con = JdbcConn.getconnection();
 				
 				PreparedStatement pstmt = con.prepareStatement(sql);){
 			
-			pstmt.setInt(1, department.getDeptNo());
-			pstmt.setString(2, department.getDeptName());
+			pstmt.setString(1, department.getDeptName());
+			pstmt.setInt(2, department.getDeptNo());
 			
-			
-			
+	
 			return pstmt.executeUpdate();
 		
 	}catch(SQLException e) {

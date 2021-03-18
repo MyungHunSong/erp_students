@@ -17,23 +17,26 @@ public class Title {
 		this.tNo = tNo;
 		this.tName = tName;
 	}
+	
 	public int gettNo() {
 		return tNo;
 	}
+	
 	public void settNo(int tNo) {
 		this.tNo = tNo;
 	}
+	
 	public String gettName() {
 		return tName;
 	}
+	
 	public void settName(String tName) {
 		this.tName = tName;
 	}
-	@Override
-	public String toString() {
-		return String.format("직책번호 = %s, 직책명 = %s", tNo, tName);
-	}
+	
+	
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +57,11 @@ public class Title {
 		if (tNo != other.tNo)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("직책번호 = %s, 직책명 = %s", tNo, tName);
 	}
 	
 	

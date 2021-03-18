@@ -127,11 +127,11 @@ public class EmployeePanel extends AbstractContentPanel<Employee> implements Ite
 		this.service = service;
 		
 		List<Department> deptList = service.showDeptList();
-		DefaultComboBoxModel deptModel = new DefaultComboBoxModel<>(new Vector<>(deptList));
+		DefaultComboBoxModel<Department> deptModel = new DefaultComboBoxModel<>(new Vector<>(deptList));
 		cmbDept.setModel(deptModel);
 
 		List<Title> titleList = service.showTitleList();
-		DefaultComboBoxModel titleModel = new DefaultComboBoxModel<>(new Vector<> (titleList));
+		DefaultComboBoxModel<Title> titleModel = new DefaultComboBoxModel<>(new Vector<> (titleList));
 		cmbTitle.setModel(titleModel);
 		
 		cmbDept.setSelectedIndex(-1);
@@ -147,17 +147,20 @@ public class EmployeePanel extends AbstractContentPanel<Employee> implements Ite
 			itemStateChangedCmbDept(e);
 		}
 	}
+	
+	
 	protected void itemStateChangedCmbDept(ItemEvent e) {
 		if(e.getStateChange() == ItemEvent.SELECTED) {
 			Department dept = (Department) cmbDept.getSelectedItem();
-			List<Employee> empByDeptList = service.showEmployeeByDept(dept);
+			List<Employee> empList = service.showEmployeeByDept(dept);
 			
 			//직속 상사가 없는 경우 추가
-			if(empByDeptList == null) {
-				empByDeptList = new ArrayList<>();
+			if(empList == null) {
+				empList = new ArrayList<>();
+				
 			}
 			
-			DefaultComboBoxModel model = new DefaultComboBoxModel<>(new Vector<>(empByDeptList));
+			DefaultComboBoxModel<Employee> model = new DefaultComboBoxModel<>(new Vector<>(empList));
 			cmbManager.setModel(model);
 			cmbManager.setSelectedItem(-1);
 		}
@@ -182,6 +185,7 @@ public class EmployeePanel extends AbstractContentPanel<Employee> implements Ite
 
 	@Override
 	public Employee getItem() {
+		validCheck();
 		int empNo = Integer.parseInt(tfNo.getText().trim());
 		String empName = tfName.getText().trim();
 		Title title = (Title) cmbTitle.getSelectedItem();
@@ -196,7 +200,10 @@ public class EmployeePanel extends AbstractContentPanel<Employee> implements Ite
 
 	@Override
 	public void validCheck() {
-		if(tfNo.getText().contentEquals("") || tfName.getText().equals("")) {
+		if(tfNo.getText().contentEquals("") || tfName.getText().equals("")
+				|| cmbTitle.getSelectedIndex() == -1
+				|| cmbDept.getSelectedIndex() == -1
+				|| cmbManager.getSelectedIndex()== -1) {
 			throw new InvalidCheckException();
 		}
 		

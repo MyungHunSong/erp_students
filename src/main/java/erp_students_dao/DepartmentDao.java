@@ -2,8 +2,8 @@ package erp_students_dao;
 
 import java.util.List;
 
-import erp_students.ui.content.EmployeeDetail;
 import erp_students_dto.Department;
+import erp_students_dto.EmployeeDetail;
 
 public interface DepartmentDao {
 	List<Department> selectByAll();

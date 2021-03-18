@@ -54,7 +54,7 @@ public class DepartmentDaoTest {
 	@Test
 	public void testInsertDepartment01() {
 		System.out.printf("%s() %n " , " testInsertDepartment()");
-		Department newDepartment = new Department(6, "학살", 3);
+		Department newDepartment = new Department(5, "레전드", 3);
 		int res = dao.insertDepartment(newDepartment);
 		Assert.assertEquals(1, res);
 		
@@ -64,7 +64,7 @@ public class DepartmentDaoTest {
 	@Test
 	public void testUpdateDepartment02() {
 		System.out.printf("%s() %n " , "testUpdateDepartment()");
-		Department newDepartment = new Department(6, "학살", 5);
+		Department newDepartment = new Department(5, "전똥찬");
 		int res = dao.updateDepartment(newDepartment);
 		Assert.assertEquals(1, res);
 		
@@ -74,7 +74,7 @@ public class DepartmentDaoTest {
 	@Test
 	public void testDeleteDepartment03() {
 		System.out.printf("%s()%n", "testDeleteDepartment");
-		int res = dao.deleteDepartment(6);
+		int res = dao.deleteDepartment(5);
 		Assert.assertEquals(1, res);
 		System.out.println(res);
 		

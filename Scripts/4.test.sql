@@ -45,10 +45,15 @@ insert into erp_detail(empno, pic, gendel, startDate, pass) values(?,?,?,?,?);
 
 select * from erp_detail; -- 이미지 파일없으면 null 뜬다.
 
-delete from erp_detail where empno = 1003;
+delete from erp_detail where empno = 1365;
 --  
 
 select empno, pic, gendel, startDate,pass from erp_detail where empno = 1003;
 
 update erp_detail  set empno=1004, pic= 1, gendel = '여', startDate = 20200308, pass = 1111  where empno = 1003;
 
+select * from title;
+
+select empname, empno from vw_full_employee where title_no = 2;
+
+select empname, empno from employee e join title t on e.title  = t.tno where title_no = 2;

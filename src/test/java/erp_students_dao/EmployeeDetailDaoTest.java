@@ -1,7 +1,5 @@
 package erp_students_dao;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,19 +7,14 @@ import java.io.InputStream;
 import java.util.Date;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import erp_students.ui.content.EmployeeDetail;
 import erp_students_daoImpl.EmployeeDetailDaoImpl;
-import erp_students_dto.Department;
 import erp_students_dto.Employee;
-import erp_students_dto.Title;
+import erp_students_dto.EmployeeDetail;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -95,10 +88,12 @@ public class EmployeeDetailDaoTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void test04DeleteEmployeeDetail() {
 		System.out.printf("%s()%n", "testDeleteEmployeeDetail()");
-		int res = dao.deleteEmployeeDetail(1003);
+		Employee newEmp = new Employee(1003);
+		int res = dao.deleteEmployeeDetail(newEmp);
+		
 		Assert.assertEquals(1, res);
 		
 		

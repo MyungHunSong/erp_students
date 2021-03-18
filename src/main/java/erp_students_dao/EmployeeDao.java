@@ -13,7 +13,7 @@ public interface EmployeeDao {
 	
 	int insertEmployee(Employee emp);
 	int updateEmployee(Employee emp);
-	int deleteEmployee(int employeeNo);
+	int deleteEmployee(Employee emp);
 	
 	
 	List<Employee> selectEmployeeByAllTitle(Title title); // 조인조건 구하기

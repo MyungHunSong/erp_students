@@ -16,7 +16,10 @@ import erp_students_dto.Title;
 
 @SuppressWarnings("serial")
 public class TitleManagerUI extends AbstractManagerUI<Title> {
+	
 	public TitleManagerUI() {
+			empListByTitleItem.setText(AbstractManagerUI.TITLE_MENU);
+		
 	}
 	private TitleService service;
 	
@@ -57,9 +60,10 @@ public class TitleManagerUI extends AbstractManagerUI<Title> {
 				return;
 			}
 
-			List<String> strList = list.parallelStream().map(s -> {
-				return String.format("%s(%d)", s.getEmpName(), s.getEmpNo());
-			}).collect(Collectors.toList());
+			List<String> strList = list
+					.parallelStream()
+					.map(s -> {return String.format("%s(%d)", s.getEmpName(), s.getEmpNo());})
+					.collect(Collectors.toList());
 
 			JOptionPane.showMessageDialog(null, strList, "동일 직책 사원", JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -80,18 +84,18 @@ public class TitleManagerUI extends AbstractManagerUI<Title> {
 
 	@Override
 	protected void actionPerformedMenuDelete(ActionEvent e) {
-		if (e.getActionCommand().equals("삭제")) {
+		
 			Title delTitle = pList.getItem();
 			service.removeTitle(delTitle);
 			pList.loadData();
 			JOptionPane.showMessageDialog(null, delTitle + "삭제 되었습니다.");
-		}
 
-		
 	}
+	
 
 	@Override
 	protected void actionPerformedBtnAdd(ActionEvent e) {
+		
 		Title title = pContent.getItem();
 		service.addTitle(title);
 		pList.loadData();

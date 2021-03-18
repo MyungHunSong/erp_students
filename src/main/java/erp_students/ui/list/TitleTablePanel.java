@@ -2,6 +2,7 @@ package erp_students.ui.list;
 
 import javax.swing.SwingConstants;
 
+import erp_students.ui.exception.NotSelectedException;
 import erp_students.ui.service.TitleService;
 import erp_students_dto.Title;
 
@@ -45,7 +46,20 @@ public class TitleTablePanel extends AbstractCustomTablePanel<Title> {
 		 this.service = service;
 		
 	}
-	
-	
 
+	@Override
+	public Title getItem() {
+		int row = table.getSelectedRow(); //  겟로우 (위치를 가져 올수 있는기능)
+		int titleNo = (int)table.getValueAt(row, 0);
+		
+		if(row == -1) {
+			
+			throw new NotSelectedException();
+		}
+		
+		return list.get(list.indexOf(new Title(titleNo)));
+
+	}
+	
+	
 }

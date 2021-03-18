@@ -34,15 +34,15 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 		
 	}
 	
-	
-	public T getItem() {
-		int idx = table.getSelectedRow(); //  겟로우 (위치를 가져 올수 있는기능)
-		if(idx == -1) {
-			throw new NotSelectedException();
-		}
-		
-		return list.get(idx);
-	}
+	public abstract T getItem(); 
+//	public  T  {
+//		int idx = table.getSelectedRow(); //  겟로우 (위치를 가져 올수 있는기능)
+//		if(idx == -1) {
+//			throw new NotSelectedException();
+//		}
+//		
+//		return list.get(idx);
+//	}
 
 	
 	
@@ -167,11 +167,7 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 	
 	
 
-	
-	
-	
-	
-	
+
 	// -----------
 	public void setTableCellWidth(int...width) {
 		TableColumnModel tcm = table.getColumnModel();
@@ -206,17 +202,5 @@ public abstract class AbstractCustomTablePanel<T> extends JPanel {
 			return false;
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-	
-	
 
 }

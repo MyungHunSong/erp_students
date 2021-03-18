@@ -1,7 +1,7 @@
 package erp_students_dao;
 
-import erp_students.ui.content.EmployeeDetail;
 import erp_students_dto.Employee;
+import erp_students_dto.EmployeeDetail;
 
 public interface EmployeeDetailDao {
 	
@@ -9,7 +9,7 @@ public interface EmployeeDetailDao {
 	
 	int insertEmployeeDetail(EmployeeDetail empDetail);
 	int updateEmployeeDetail(EmployeeDetail empDetail);
-	int deleteEmployeeDetail(int employeeNo);
+	int deleteEmployeeDetail(Employee emp);
 
 	
 }

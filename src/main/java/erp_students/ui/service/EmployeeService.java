@@ -41,8 +41,8 @@ public class EmployeeService {
 		
 	}
 	
-	public void removeEmployee(Employee employee) {
-		employeeDao.deleteEmployee(employee.getEmpNo());
+	public void removeEmployee(Employee emp) {
+		employeeDao.deleteEmployee(emp);
 	}
 	
 	public void modifyEmployee(Employee employee) {

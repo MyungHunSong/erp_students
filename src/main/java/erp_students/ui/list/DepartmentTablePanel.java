@@ -2,6 +2,7 @@ package erp_students.ui.list;
 
 import javax.swing.SwingConstants;
 
+import erp_students.ui.exception.NotSelectedException;
 import erp_students.ui.service.DepartmentService;
 import erp_students_dto.Department;
 
@@ -43,6 +44,19 @@ public class DepartmentTablePanel extends AbstractCustomTablePanel<Department> {
 	public void setService(DepartmentService service) {
 		this.service = service;
 		
+	}
+
+	@Override
+	public Department getItem() {
+		int row = table.getSelectedRow(); //  겟로우 (위치를 가져 올수 있는기능)
+		int deptNo = (int)table.getValueAt(row, 0);
+		
+		if(row == -1) {
+			
+			throw new NotSelectedException();
+		}
+		
+		return list.get(list.indexOf(new Department(deptNo)));
 	}
 
 	

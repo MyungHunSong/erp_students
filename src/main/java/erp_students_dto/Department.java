@@ -21,6 +21,14 @@ public class Department {
 		this.deptName = deptName;
 	}
 	
+	
+	
+
+
+	public Department(int deptNo, String deptName) {
+		this.deptNo = deptNo;
+		this.deptName = deptName;
+	}
 
 
 	public Department(int deptNo, String deptName, int floor) {

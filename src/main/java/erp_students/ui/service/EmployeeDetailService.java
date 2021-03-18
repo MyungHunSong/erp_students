@@ -1,9 +1,9 @@
 package erp_students.ui.service;
 
-import erp_students.ui.content.EmployeeDetail;
 import erp_students_dao.EmployeeDetailDao;
 import erp_students_daoImpl.EmployeeDetailDaoImpl;
 import erp_students_dto.Employee;
+import erp_students_dto.EmployeeDetail;
 
 public class EmployeeDetailService {
 	private EmployeeDetailDao empDetailDao = EmployeeDetailDaoImpl.getInstance();
@@ -17,11 +17,13 @@ public class EmployeeDetailService {
 		empDetailDao.insertEmployeeDetail(empDetail);
 	}
 	
-	public void removeEmployeeDetail(int empDetail) {
-		empDetailDao.deleteEmployeeDetail(empDetail);
-	}
+	
 	
 	public void modifyEmployeeDetail(EmployeeDetail empDetail) {
 		empDetailDao.updateEmployeeDetail(empDetail);
+	}
+	
+	public void removeEmployeeDetail(Employee employee) {
+		empDetailDao.deleteEmployeeDetail(employee);
 	}
 }

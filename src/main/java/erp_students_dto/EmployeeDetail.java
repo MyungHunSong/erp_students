@@ -1,6 +1,6 @@
-package erp_students.ui.content;
+package erp_students_dto;
 
-import java.util.Arrays;
+
 import java.util.Date;
 
 public class EmployeeDetail {
@@ -102,6 +102,12 @@ public class EmployeeDetail {
 	public String toString() {
 		return String.format("EmpDetail [empNo=%s, gender=%s, hireDate=%s, pic=%s]", empNo, gender, hireDate,
 				pic.length);
+	}
+
+
+	public void setItem(EmployeeDetail empDetail) {
+	
+		
 	}
 	
 	

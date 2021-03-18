@@ -29,15 +29,22 @@ public abstract class AbstractManagerUI<T> extends JFrame implements ActionListe
 	protected  AbstractContentPanel<T> pContent;
 	protected  AbstractCustomTablePanel<T> pList;
 
-	private TitleService service;
+
+	
+	protected JMenuItem empListByTitleItem;
+	
+	protected  static final String TITLE_MENU = "동일 직책 사원 보기"; 
+	protected  static final String DEPT_MENU = "동일 부서 사원 보기"; 
+	protected  static final String EMP_MENU = "사원 세부정보 보기"; 
+	private JButton btnClear;
 
 	public AbstractManagerUI() {
 
-		setService(); // setService
-
+		setService(); //서비스 연결
+		
 		initialize();
 
-		tableLoadData(); // component loaddata
+		tableLoadData(); // component load data
 	}
 
 	private void initialize() {
@@ -58,7 +65,8 @@ public abstract class AbstractManagerUI<T> extends JFrame implements ActionListe
 		btnAdd.addActionListener(this);
 		pBtns.add(btnAdd);
 
-		JButton btnClear = new JButton("취소");
+		btnClear = new JButton("취소");
+		btnClear.addActionListener(this);
 		pBtns.add(btnClear);
 
 		pList = createTablePanel();
@@ -83,7 +91,7 @@ public abstract class AbstractManagerUI<T> extends JFrame implements ActionListe
 		deleteItem.addActionListener(this);
 		popMenu.add(deleteItem);
 
-		JMenuItem empListByTitleItem = new JMenuItem("동일 직책 사원 보기");
+		empListByTitleItem = new JMenuItem("동일 직책 사원 보기");
 		empListByTitleItem.addActionListener(this);
 		popMenu.add(empListByTitleItem);
 
@@ -91,42 +99,55 @@ public abstract class AbstractManagerUI<T> extends JFrame implements ActionListe
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnClear) {
+			actionPerformedBtnClear(e);
+		}
 		try {
-			//만약 소스가 jMenu 랑 동일하다면 지금 if 문수행
-			if (e.getSource() instanceof JMenuItem) {
-				if (e.getActionCommand().equals("삭제")) {
+			
+			if(e.getSource() instanceof JMenuItem) {
+				if(e.getActionCommand().equals("삭제")) {
 					actionPerformedMenuDelete(e);
 				}
-
-				if (e.getActionCommand().equals("수정")) {
+				if(e.getActionCommand().equals("수정")) {
 					acitonPerformedMenuUpdate();
 				}
-
-				if (e.getActionCommand().contentEquals("동일 직책 사원 보기")) {
+			
+				//만약 소스가 jMenu 랑 동일하다면 지금 if 문수행
+			
+				if (e.getActionCommand().contentEquals(AbstractManagerUI.TITLE_MENU) 
+						|| e.getActionCommand().contentEquals(AbstractManagerUI.DEPT_MENU )
+								|| e.getActionCommand().contentEquals(AbstractManagerUI.EMP_MENU)){
 					actionPerformedMenuGuBun();
-				}
-			} else {
-
-				// 위쪽과 아래쪽은 구분 해줘야 한다.
-				if (e.getSource() == btnAdd) {
-					if (e.getActionCommand().contentEquals("추가")) {
-						actionPerformedBtnAdd(e);
-					} else {
-						actionPerformedBtnUpdate(e);
 					}
-				}
-			}
-		} catch (InvalidCheckException | SqlConstraintException e1) {
+				
+			 }else{
+				 if(e.getSource() == btnClear) {
+					 actionPerformedBtnClear(e);
+				 }
+				 
+				 if(e.getSource() == btnAdd) {
+					 if(e.getActionCommand().contentEquals("추가")) {
+						 actionPerformedBtnAdd(e);
+					 }else {
+						 actionPerformedBtnUpdate(e);
+					 }
+				 }
+				 
+			 }
+		}catch (InvalidCheckException | SqlConstraintException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
-
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
+		}catch (Exception e1) {
+				e1.printStackTrace();
+		}	 
+			 
 	}
 	
+		
 	
-	protected abstract void setService();
+
+	
+	// ----- 하위에서 구현 ------
+	protected abstract void setService(); 
 
 	protected abstract void tableLoadData();
 	
@@ -149,4 +170,11 @@ public abstract class AbstractManagerUI<T> extends JFrame implements ActionListe
 	protected abstract void actionPerformedBtnUpdate(ActionEvent e);
 
 	
+	protected void actionPerformedBtnClear(ActionEvent e) {
+		pContent.clearTf();
+		
+		if(btnAdd.getText().contentEquals("수정")) {
+			btnAdd.setText("추가");
+		}
+	}
 }

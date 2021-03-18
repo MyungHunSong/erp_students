@@ -68,6 +68,7 @@ public class TitlePanel extends AbstractContentPanel<Title>{
 		String tName = tfName.getText().trim();
 		return new Title(tNo, tName);
 	}
+	
 
 	@Override
 	public void validCheck() {
